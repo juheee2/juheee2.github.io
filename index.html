@@ -100,7 +100,7 @@
       font-size:40px;
       text-transform:uppercase;
       width:100%;
-      background:var(--sub-color01);
+      /* background:var(--sub-color01); */
       position:fixed;
       top:0;
       z-index:10000;
@@ -554,23 +554,40 @@
 
     AOS.init();
 
-    $(window).scroll(function () {
-     asideEvent();
+    let oldScrTop = 0;
+    $(window).scroll(function () {          
+      // 어사이드 이벤트
+      let targetY = $('.work .art02').offset().top;
+      let targetHeight = $('.work .art02').height();
+      let scrTop = $(window).scrollTop();
+      let winHeight = $(window).height();
+      let showPont = targetY - winHeight + targetHeight;
+      asideEvent(scrTop,showPont);
+
+      // 네비 반응형
+      if(0 == scrTop){
+        console.log('최상단');
+      }else if(scrTop > oldScrTop){
+        console.log('다운');
+      }else if(scrTop < oldScrTop){
+        console.log('업');
+      }
+      oldScrTop = scrTop;
+
     });
 
+    $(window).resize(function () {
+     asideEvent();
+    });
     asideEvent();
 
     
-    function asideEvent(){
-      if($(this).width()>=1200){
-      if ($(this).scrollTop() > 1400) {
-        $('.aside-up').fadeIn(1400);
-        } else {
-          $('.aside-up').fadeOut(1400);
-        }
-      }else{
-        $('.aside-up').hide();
-      }
+    function asideEvent(val01,val02){      
+      if (val01>=val02) {
+        $('.aside-up').fadeIn(500);
+      } else {
+        $('.aside-up').fadeOut(500);
+      }      
     }
 
     $('.aside-up .btn-up').click(function (event) {
