@@ -1,1 +1,521 @@
-나의 포트폴리오
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <title>민주희 portfolio</title>
+  <style>
+    :root{
+      --main-color:#fffeed;
+      --sub-color01:#ffe7b5;
+      --sub-color02:#ffa155;
+      --swiper-theme-color:#ffa155;
+      font-family:'Noto Sans KR',sans-serif;
+      font-weight:400;
+      font-size:15px;
+      color:#333;
+      line-height:1.2;
+      scroll-behavior:smooth;
+    }
+    #wrap{
+      overflow:hidden;
+    }
+    .container{
+      max-width:1280px;
+      margin:0 auto;
+      padding:0 50px;
+    }
+    .header-home{
+      padding-bottom:200px;
+      text-align:center;
+      background:var(--main-color);
+    }
+    .header-home .triangle{
+      width:0;
+      height:0;
+      border-style:solid;
+      border-width:300px 50vw 0 50vw;
+      border-color:var(--sub-color01) transparent transparent transparent;
+      text-indent:-9999px;      
+    }
+    .header-home h1{
+      font-family:'Silkscreen';
+      font-size:100px;
+      padding:30px 0 40px;
+    }
+    .header-home p{
+      font-family:'Dongle';
+      font-size:50px;
+      line-height:1.0;
+    }
+    /* 버튼 안에 a만 클릭 되는거 해결*/
+    .header-home button{
+      border:none;
+      background:transparent;
+      margin-top:120px;
+    }
+    .header-home button>a{
+      display:block;
+      font-family:'Dongle';
+      font-size:40px;
+      border-style:none;
+      border-radius:40px;
+      width:250px;
+      padding:10px;
+      background:var(--sub-color02);
+      position:relative;
+    }
+    .header-home .btn-page01{
+      margin-right:50px;
+    }
+    .header-home .btn-page02{
+      margin-left:50px;
+    }
+    h2{
+      display:none;
+    }
+    h3{
+      font-family:'Dongle';
+      font-weight:700;
+      font-size:72px;
+      text-align:center;
+      text-transform:uppercase;
+      padding-top:100px;
+      padding-bottom:40px;
+    }
+    .publishing{
+      display: grid;
+      grid-template-columns:1fr;
+      gap:80px;
+      padding:0 80px;
+    }
+    .publishing .art{
+      display: grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+    .publishing .art:nth-child(2n) .img-box{
+      order:2;
+    }
+    .publishing .art .img-box{
+      overflow:hidden;
+    }
+    .publishing .art img{
+      height:100%;
+      object-fit:cover; 
+      /* filter:grayscale(1);
+      transition: 0.2s;   */
+      transform: scale(1.3);
+      filter: grayscale(0); 
+    }
+    .publishing .art:hover .img-box img{
+      /* transform: scale(1.3);
+      filter: grayscale(0); */
+      filter:grayscale(1);
+      transition: 0.2s;
+    }
+    .publishing .art:nth-child(2n) .art-txt{
+      order:1;
+    }
+    .publishing .art-txt{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:30px;
+    }
+    .publishing .art-txt h4{
+      grid-column:1/-1;
+      font-size:20px;
+      font-weight:500;
+    }
+    .publishing .art-txt h5{
+      grid-column:1/2;
+    }
+    .publishing button{
+      grid-column:1/-1;
+      border:none;
+      background:transparent;
+    }
+    .publishing button>a{
+      display:block;
+      padding:15px 0;
+      border-radius:30px;
+      background:var(--sub-color02);
+    }
+    /* vertical swiper 적용하려면 높이가 꼭 지정되어야함 */
+    .banner-design .swiper{
+      width:100%;
+      height:500px;
+      position:relative;
+    }
+    .banner-design .swiper-pagination{
+      position:absolute;
+      top:0;
+      right:30px;
+      transform:translateY(500%);
+    }
+    .aside-up .btn-up{
+      width:50px;
+      position:fixed;
+      right:3%;
+      bottom:10%;
+      /* left:0; */
+      z-index:700;
+    }
+    .footer{
+      line-height:1.8;
+      background:var(--main-color);
+      padding-bottom:100px;
+    }
+    .about-me h3:first-child{
+      padding-top:0;
+      margin-top:100px;
+    }
+    /* .about-me .who-left{
+      float:left;
+      width:60%;
+      padding-right:20px;
+    }
+    .about-me .who-right{
+      float:right;
+      width:40%;
+      padding-left:20px;
+    } */
+    .about-me .who-con{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+    }
+    .about-me .who h4{
+      display:none;
+    }
+    .about-me .icon{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      /* justify-content:space-around; */
+      place-items:center;
+    }
+    .about-me .icon img{
+      background:var(--sub-color02);
+      border-radius:80px;
+      padding:20px;
+    }
+    .about-me .icon .img-box{
+      width:40%;
+    }
+    
+    
+
+
+    @media (max-width:768px){
+      .header-home{
+        height:auto;
+        padding-bottom:100px;
+      }
+      .header-home h1 span,
+      .header-home p span,
+      .header-home button>span{
+        font-size:0.9em;
+      }
+      .header-home button a{
+        width:210px;
+      }
+      .header-home .btn-page01{
+        margin-right:30px;
+      }
+      .header-home .btn-page02{
+        margin-left:30px;
+      }
+      .publishing .art{
+        grid-template-columns: 1fr;
+      }
+      .publishing .art:nth-child(2n) .img-box{
+        order:1;
+      }
+      .publishing .art:nth-child(2n) .art-txt{
+        order:2;
+      }
+      /* .about-me .who-left,
+      .about-me .who-right{
+        clear:both;
+      } */
+      .about-me .who-con{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:50px;
+        /* text-align:center; */
+      }
+      .about-me .icon img{
+        padding:10px;
+      }
+      .about-me .icon .img-box{
+        width:50%;
+      }
+    }
+
+
+    @media (max-width:590px){
+      .container{
+        padding:0;
+      }
+      .publishing{
+        padding:0;
+        gap:0;
+      }
+      .header-home .btn-page{
+        display:block;
+        margin:80px auto 30px;
+      }
+      .header-home .btn-page:last-child{
+        margin-top:30px;
+      }
+      .publishing .art .img-box{
+        grid-area:1/1/2/2;
+        z-index:1;
+      }
+      /* 이미지 위에 텍스트 겹쳐짐 */
+      .publishing .art .art-txt{
+        grid-area:1/1/2/2;
+        padding:50px;
+        /* display: none; */
+        background:rgba(255, 231, 181, 0.6);
+        z-index:30;
+        opacity:0;
+        transition:0.5s 0.1s;
+      }
+      .publishing .art:hover .art-txt{
+        /* display: block; */
+        opacity:1;
+      }
+      .about-me .container{
+        padding:0 30px;
+      }
+    }
+
+  
+    @media (max-width:460px){
+      .header-home h1 span{
+        font-size:0.7em;
+      }
+      .header-home p span,
+      .header-home button>span{
+        font-size:0.8em;
+      }
+      h3{
+        font-size:60px;
+      }
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <section id="wrap">
+    <header class="header-home">
+      <div class="triangle">
+        삼각형
+      </div>
+      <div class="container">
+        <h1><a href="./index.html"><span>send u</span></a></h1>
+        <p><span>바쁘다 바빠 현대사회</span></p>
+        <p><span>소중한 시간 내주셔서 감사합니다!</span></p>
+        <button class="btn-page01 btn-page" type="button"><a href="#work"><span>작업물 바로보기</span></a></button>
+        <button class="btn-page02 btn-page" type="button"><a href="#about-me"><span>지원자정보 바로보기</span></a></button>
+      </div>
+    </header>
+    <section class="work" id="work">
+      <h2>work</h2>
+      <div class="container">
+        <h3>publishing</h3>
+        <div class="publishing">
+          <article class="art art01">
+            <div class="img-box">
+              <img src="./images/touslesjours-mockup.png" alt="뚜레쥬르 리뉴얼">
+            </div>
+            <div class="art-txt">
+              <h4>뚜레쥬르 리뉴얼</h4>
+              <h5>설명</h5>
+              <p>기획, 디자인, 반응형 구현까지<br>모든 과정을 리뉴얼한 작업물 입니다.</p>
+              <h5>작업물</h5>
+              <p>메인 페이지(데스크탑/테블릿/모바일)</p>
+              <h5>포인트</h5>
+              <p>#반응형 #스크롤 이벤트 #자동 슬라이더</p>
+              <button type="button">
+                <a href="https://github.com/juheee2/touslesjours">
+                  사이트 바로가기
+                </a>
+              </button>
+            </div>
+          </article>
+          <article class="art art02">
+            <div class="img-box">
+              <img src="./images/ex-mockup.png" alt="신한은행 리뉴얼">
+            </div>
+            <div class="art-txt">
+              <h4>신한은행 리뉴얼</h4>
+              <h5>설명</h5>
+              <p>기획, 디자인, 반응형 구현까지<br>모든 과정을 리뉴얼한 작업물 입니다.</p>
+              <h5>작업물</h5>
+              <p>메인 페이지(데스크탑/테블릿/모바일)</p>
+              <h5>포인트</h5>  
+              <p>#반응형 #아코디언 메뉴 #모달</p>
+              <button type="button">
+                <a href="#">사이트 바로가기</a>
+              </button>
+            </div>
+          </article>
+          <article class="art art03">
+            <div class="img-box">
+              <img src="./images/ex-mockup.png" alt="클론코딩1">
+            </div>
+            <div class="art-txt">
+              <h4>클론코딩1</h4>
+              <h5>설명</h5>
+              <p>기존 사이트를 그대로 구현해낸<br>클론코딩 작업물 입니다.</p>
+              <h5>작업물</h5>
+              <p>메인 페이지(데스크탑/테블릿/모바일)</p>
+              <h5>포인트</h5>
+              <p>#</p>
+              <button type="button">
+                <a href="#">사이트 바로가기</a>
+              </button>
+            </div>
+          </article>
+          <article class="art art04">
+            <div class="img-box">
+              <img src="./images/ex-mockup.png" alt="클론코딩2">
+            </div>
+            <div class="art-txt">
+              <h4>클론코딩2</h4>
+              <h5>설명</h5>
+              <p>기존 사이트를 그대로 구현해낸<br>클론코딩 작업물 입니다.</p>
+              <h5>작업물</h5>
+              <p>메인 페이지(데스크탑/테블릿/모바일)</p>
+              <h5>포인트</h5>
+              <p>#</p>
+              <button type="button">
+                <a href="#">사이트 바로가기</a>
+              </button>
+            </div>
+          </article>
+        </div>
+        <div class="banner-design">
+          <h3>banner design</h3>
+          <!-- Swiper -->
+          <div class="swiper banner-design-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="img-box"><img src="./images/banner-design01-lime.png" alt="라임에이드 배너"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="img-box"><img src="./images/banner-design02-glow.png" alt="글로우세럼 배너"></div>   
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>     
+          </div>
+        </div>
+    </section>
+    <aside class="aside-up">
+      <div class="btn-up">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+          <path opacity="1" fill="#ffa155" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+        </svg>
+        <!-- <img src="./images/btn-up.svg" alt="up버튼"> -->
+      </div>
+    </aside>
+    <footer class="footer about-me" id="about-me">
+      <h2>about me</h2>
+      <div class="container">
+        <div class="who">
+          <h3>who?</h3>
+          <div class="who-con">
+            <div class="who-left">
+              <h4>story</h4>
+              <p>안녕하세요. 퍼블리셔 민주희입니다.<br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore 
+                magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                consequat.
+              </p>
+            </div>
+            <div class="who-right clearfix">
+              <h4>certificate</h4>
+              <p>
+                <span>2019.12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>GTQ 2급</span><br>
+                2020.01&nbsp;&nbsp;&nbsp;&nbsp;GTQI 1급<br>
+                2023.12&nbsp;&nbsp;&nbsp;&nbsp;컴퓨터그래픽스운용기능사<br>
+                2024.01&nbsp;&nbsp;&nbsp;&nbsp;웹표준 반응형 웹디자인&웹퍼블리셔 과정 이수 
+              </p>
+            </div>
+          </div>
+          
+          <!-- <ul class="clearfix">
+            <li class="who-left">
+              <h4>story</h4>
+              <p>안녕하세요. 퍼블리셔 민주희입니다.<br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore 
+                magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                consequat.
+              </p>
+            </li>
+            <li class="who-right">
+              <h4>certificate</h4>
+              <p>
+                2019.12&nbsp;&nbsp;GTQ 2급<br>
+                2020.01&nbsp;&nbsp;GTQI 1급<br>
+                2023.12&nbsp;&nbsp;컴퓨터그래픽스운용기능사<br>
+                2024.01&nbsp;&nbsp;웹표준 반응형 웹디자인&웹퍼블리셔 과정 이수 
+              </p>
+            </li>
+          </ul> -->
+        </div>
+        <div class="contact">
+          <h3>contact</h3>
+          <div class="icon">
+            <div class="img-box" title="카카오톡">
+              <img src="./images/kakao.svg" alt="카카오톡">
+              <p>ju2221</p>
+            </div>
+            <div class="img-box" title="e-메일"><img src="./images/mail.svg" alt="메일"></div>
+            <div class="img-box" title="git-hub"><img src="./images/github.svg" alt="깃허브"></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <script src="./js/jquery.min.js"></script>
+  <script src="js/swiper-bundle.min.js"></script>
+  <script>
+    const bannerDesignSwiper = new Swiper(".banner-design-swiper", {
+      direction: "vertical",
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      autoplay:{
+        delay:1600,
+      }
+    });
+
+    $(window).scroll(function () {
+		if ($(this).scrollTop() > 1400) {
+			$('.aside-up').fadeIn();
+      } else {
+        $('.aside-up').fadeOut();
+      }
+    });
+    $('.aside-up .btn-up').click(function (event) {
+      event.preventDefault();
+      $('html, body').animate({ scrollTop: 0 }, 200);
+    });
+  </script>
+</body>
+</html>
