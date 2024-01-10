@@ -1,0 +1,27 @@
+@charset 'uff8';
+
+@font-face{
+  font-family:'Silkscreen';
+  src:url(../fonts/Silkscreen-Regular.ttf);
+  font-weight:400;
+}
+@font-face{
+  font-family:'Dongle';
+  src:url(../fonts/Dongle-Regular.ttf);
+  font-weight:400;
+}
+@font-face{
+  font-family:'Dongle';
+  src:url(../fonts/Dongle-Bold.ttf);
+  font-weight:700;
+}
+@font-face{
+  font-family:'Noto Sans KR';
+  src:url(../fonts/NotoSansKR-Regular.ttf);
+  font-weight:400;
+}
+@font-face{
+  font-family:'Noto Sans KR';
+  src:url(../fonts/NotoSansKR-Medium.ttf);
+  font-weight:500;
+}
