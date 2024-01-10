@@ -39,6 +39,7 @@
       margin:0 auto;
       padding:0 50px;
     }
+    /* 모바일에서 글자 파란색으로 보임 */
     button{
       color:#333;
     }
@@ -81,13 +82,30 @@
       width:250px;
       padding:10px;
       background:var(--sub-color02);
-      position:relative;
+
     }
     .header-home .btn-page01{
       margin-right:50px;
     }
     .header-home .btn-page02{
       margin-left:50px;
+    }
+    nav{
+      display:none;
+      font-family:'Dongle';
+      font-size:40px;
+      text-transform:uppercase;
+      width:100%;
+      background:var(--sub-color01);
+      position:fixed;
+      top:0;
+      z-index:10000;
+    }
+    nav ul{
+      display:flex;
+      flex-flow:row nowrap;
+      justify-content:space-around;
+      /* align-items:center; */
     }
     h2{
       display:none;
@@ -249,6 +267,9 @@
       .header-home .btn-page02{
         margin-left:30px;
       }
+      nav{
+        display:block;
+      }
       .publishing .art{
         grid-template-columns: 1fr;
       }
@@ -258,7 +279,7 @@
       .publishing .art:nth-child(2n) .art-txt{
         order:2;
       }
-      .about-me h3:first-child{
+      .about-me .who h3{
         margin-top:0;
        }
       .about-me .who-con{
@@ -328,6 +349,9 @@
       .header-home button>span{
         font-size:0.8em;
       }
+      nav{
+        font-size:30px;
+      }
       h3{
         font-size:60px;
       }
@@ -339,7 +363,7 @@
 </head>
 <body>
   <section id="wrap">
-    <header class="header-home">
+    <header class="header-home" id="home">
       <div class="triangle">
         삼각형
       </div>
@@ -350,6 +374,13 @@
         <button class="btn-page01 btn-page" type="button"><a href="#work"><span>작업물 바로보기</span></a></button>
         <button class="btn-page02 btn-page" type="button"><a href="#about-me"><span>지원자정보 바로보기</span></a></button>
       </div>
+      <nav>
+        <ul>
+          <li><a href="#home">home</a></li>
+          <li><a href="#work">work</a></li>
+          <li><a href="#about-me">about-me</a></li>
+        </ul>
+      </nav>
     </header>
     <section class="work" id="work">
       <h2>work</h2>
@@ -503,6 +534,8 @@
         delay:1600,
       }
     });
+
+
 
     $(window).scroll(function () {
      if($(window).width()>=1200){
