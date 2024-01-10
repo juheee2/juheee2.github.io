@@ -174,16 +174,6 @@
       padding-top:0;
       margin-top:100px;
     }
-    /* .about-me .who-left{
-      float:left;
-      width:60%;
-      padding-right:20px;
-    }
-    .about-me .who-right{
-      float:right;
-      width:40%;
-      padding-left:20px;
-    } */
     .about-me .who-con{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -198,15 +188,30 @@
       /* justify-content:space-around; */
       place-items:center;
     }
-    .about-me .icon img{
-      background:var(--sub-color02);
-      border-radius:80px;
-      padding:20px;
+    #copy{
+      background-size:100px;
+      background-color:var(--sub-color02);
+      background-repeat :no-repeat;
+      background-position:center;
+      border-color:transparent;
+      border-radius:100px;
+      width:100px;
+      height:100px;
+      padding:80px;
+      cursor: pointer;
+      text-indent:-99999px;
     }
-    .about-me .icon .img-box{
-      width:40%;
-      cursor:pointer;
+    .kakao-copy{
+    	background-image: url('./images/kakao.svg');
     }
+    .email-copy{
+    	background-image: url('./images/mail.svg');
+    }
+    .github-copy{
+    	background-image: url('./images/github.svg');
+    }
+    
+    
     
     
 
@@ -239,21 +244,19 @@
       .publishing .art:nth-child(2n) .art-txt{
         order:2;
       }
-      /* .about-me .who-left,
-      .about-me .who-right{
-        clear:both;
-      } */
+      .about-me h3:first-child{
+        margin-top:0;
+       }
       .about-me .who-con{
         display:grid;
         grid-template-columns:1fr;
         gap:50px;
-        /* text-align:center; */
       }
-      .about-me .icon img{
-        padding:10px;
-      }
-      .about-me .icon .img-box{
-        width:50%;
+      #copy{
+        background-size:80px;
+        width:80px;
+        height:80px;
+        padding:60px;
       }
     }
 
@@ -293,6 +296,12 @@
       }
       .about-me .container{
         padding:0 30px;
+      }
+      #copy{
+        background-size:60px;
+        width:60px;
+        height:60px;
+        padding:40px;
       }
     }
 
@@ -426,7 +435,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
           <path opacity="1" fill="#ffa155" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
         </svg>
-        <!-- <img src="./images/btn-up.svg" alt="up버튼"> -->
       </div>
     </aside>
     <footer class="footer about-me" id="about-me">
@@ -445,7 +453,7 @@
                 consequat.
               </p>
             </div>
-            <div class="who-right clearfix">
+            <div class="who-right">
               <h4>certificate</h4>
               <p>
                 <span>2019.12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>GTQ 2급</span><br>
@@ -455,35 +463,13 @@
               </p>
             </div>
           </div>
-          
-          <!-- <ul class="clearfix">
-            <li class="who-left">
-              <h4>story</h4>
-              <p>안녕하세요. 퍼블리셔 민주희입니다.<br>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore 
-                magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                consequat.
-              </p>
-            </li>
-            <li class="who-right">
-              <h4>certificate</h4>
-              <p>
-                2019.12&nbsp;&nbsp;GTQ 2급<br>
-                2020.01&nbsp;&nbsp;GTQI 1급<br>
-                2023.12&nbsp;&nbsp;컴퓨터그래픽스운용기능사<br>
-                2024.01&nbsp;&nbsp;웹표준 반응형 웹디자인&웹퍼블리셔 과정 이수 
-              </p>
-            </li>
-          </ul> -->
         </div>
         <div class="contact">
           <h3>contact</h3>
           <div class="icon">
-            <div class="img-box" title="카카오톡"><img src="./images/kakao.svg" alt="카카오톡"></div>
-            <div class="img-box" title="e-메일"><img src="./images/mail.svg" alt="메일"></div>
-            <div class="img-box" title="git-hub"><img src="./images/github.svg" alt="깃허브"></div>
+              <input type="button" class="kakao-copy" id="copy" title="카카오톡" value="카카오톡 버튼" data-clipboard-text="ju2221"/>
+              <input type="button" class="email-copy" id="copy" title="이메일" value="이메일 버튼" data-clipboard-text="110wngml@naver.com"/>
+              <input type="button" class="github-copy" id="copy" title="깃허브" value="깃허브 버튼" data-clipboard-text="juheee2"/>
           </div>
         </div>
       </div>
@@ -491,6 +477,7 @@
   </section>
   <script src="./js/jquery.min.js"></script>
   <script src="js/swiper-bundle.min.js"></script>
+  <script src="./js/clipboard.min.js"></script>
   <script>
     const bannerDesignSwiper = new Swiper(".banner-design-swiper", {
       direction: "vertical",
@@ -504,15 +491,28 @@
     });
 
     $(window).scroll(function () {
-		if ($(this).scrollTop() > 1400) {
-			$('.aside-up').fadeIn();
-      } else {
-        $('.aside-up').fadeOut();
+     if($(window).width()>=1200){
+      if ($(this).scrollTop() > 1400) {
+        $('.aside-up').fadeIn(1400);
+        } else {
+          $('.aside-up').fadeOut(1400);
+        }
       }
     });
+    $(window).resize(function(){
+      if($(window).width()<1200){
+        $('.aside-up').show();
+      }
+    })
     $('.aside-up .btn-up').click(function (event) {
       event.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, 200);
+    });
+
+    $(function(){
+      var clipboard = new ClipboardJS('#copy');
+        clipboard.on('success', function(e) {alert("클립보드에 복사되었습니다:) 연락주세요!");}); 
+        clipboard.on('error', function(e) {alert("복사 실패했습니다:( 재시도 해주세요!)");});
     });
   </script>
 </body>
