@@ -232,6 +232,17 @@
     .about-me .who h4{
       display:none;
     }
+    
+    .about-me .who-right p{
+        display:grid;
+        grid-template-columns:1fr 3fr;
+      }
+      .about-me .who-right p .date{
+        grid-column:1/2;
+      }
+      .about-me .who-right p .study{
+        grid-column:2/3;
+      }
     .about-me .icon{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -567,10 +578,10 @@
             <div class="who-right">
               <h4>certificate</h4>
               <p>
-                <span>2019.12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>GTQ 2급</span><br>
-                2020.01&nbsp;&nbsp;&nbsp;&nbsp;GTQI 1급<br>
-                2023.12&nbsp;&nbsp;&nbsp;&nbsp;컴퓨터그래픽스운용기능사<br>
-                2024.01&nbsp;&nbsp;&nbsp;&nbsp;웹표준 반응형 웹디자인&웹퍼블리셔 과정 이수 
+                <span class="date">2019.12</span><span class="study">GTQ 2급</span>
+                <span class="date">2020.01</span><span class="study">GTQI 1급</span>
+                <span class="date">2023.12</span><span class="study">컴퓨터그래픽스운용기능사</span>
+                <span class="date">2024.01</span><span class="study">웹표준 반응형 웹디자인&웹퍼블리셔 과정 이수</span>
               </p>
             </div>
           </div>
