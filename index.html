@@ -276,7 +276,7 @@
     @media (max-width:768px){
       .header-home{
         height:auto;
-        padding-bottom:100px;
+        padding-bottom:60px;
       }
       .header-home h1 span,
       .header-home p span,
@@ -322,10 +322,6 @@
       .container{
         padding:0;
       }
-      .publishing{
-        padding:0;
-        gap:0;
-      }
       .header-home .btn-page{
         display:block;
         margin:80px auto 30px;
@@ -335,6 +331,10 @@
       }
       h3{
         font-size:65px;
+      }
+      .publishing{
+        padding:0;
+        gap:0;
       }
       .publishing .art .img-box{
         grid-area:1/1/2/2;
@@ -374,12 +374,25 @@
 
   
     @media (max-width:460px){
+      .header-home .triangle{
+        border-width:190px 50vw 0 50vw;
+      }
+      .header-home h1{
+        padding-top:0;
+        padding-bottom:30px;
+      }
       .header-home h1 span{
         font-size:0.7em;
       }
       .header-home p span,
-      .header-home button>span{
+      .header-home button span{
         font-size:0.8em;
+      }
+      .header-home .btn-page{
+        margin:40px auto 5px;
+      }
+      .header-home button>a{
+        padding:0;
       }
       nav{
         font-size:30px;
