@@ -40,7 +40,7 @@
       margin:0 auto;
       padding:0 50px;
     }
-    /* 모바일에서 글자 파란색으로 보임 */
+    /* 모바일에서 글자 파란색으로 보임 해결*/
     button{
       color:#333;
     }
@@ -100,16 +100,36 @@
       font-size:40px;
       text-transform:uppercase;
       width:100%;
-      /* background:var(--sub-color01); */
+      background:transparent;
       position:fixed;
       top:0;
+      left:0;
+      right:0;
       z-index:10000;
+      transform:translateY(0);
+      padding-top:4px;
+      background:transparent;
+      color:#000;
+      box-shadow:0 2px 3px transparent;
+      transition:0.3s;
     }
-    nav ul{
+    nav.down{
+      transform:translateY(-100px);
+      color:#000;
+      background:transparent;
+      box-shadow:0px 2px 3px transparent;
+    }
+    nav.up{
+      transform:translateY(0);
+      color:#fff;
+      background:#000;
+      box-shadow:0 2px 3px #333;
+    }
+    nav .nav-text{
       display:flex;
       flex-flow:row nowrap;
       justify-content:space-around;
-      /* align-items:center; */
+      align-items:center;
     }
     h2{
       display:none;
@@ -179,17 +199,14 @@
       box-shadow:5px 5px 15px #999;
       font-weight:700;
     }
-    /* vertical swiper 적용하려면 높이가 꼭 지정되어야함 */
     .banner-design .swiper{
       width:100%;
-      height:500px;
-      position:relative;
+      height:100%;
     }
-    .banner-design .swiper-pagination{
-      position:absolute;
-      top:0;
-      right:30px;
-      transform:translateY(500%);
+    .swiper-slide {
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
     .aside-up .btn-up{
       width:50px;
@@ -218,7 +235,6 @@
     .about-me .icon{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      /* justify-content:space-around; */
       place-items:center;
     }
     #copy{
@@ -288,9 +304,6 @@
       .publishing .art:nth-child(2n) .art-txt{
         order:2;
       }
-      .about-me .who h3{
-        margin-top:0;
-       }
       .about-me .who-con{
         display:grid;
         grid-template-columns:1fr;
@@ -328,16 +341,16 @@
         transform:none;  
       }
       .publishing .art:hover .img-box img{
-        transform: scale(1.3);
+        /* transform: scale(1.3); */
         filter:grayscale(1);   
       }
       /* 이미지 위에 텍스트 겹쳐짐 */
       .publishing .art .art-txt{
         grid-area:1/1/2/2;
         padding:50px;
-        /* display: none; */
         background:rgba(255, 231, 181, 0.6);
         z-index:30;
+        /* display: none; */
         opacity:0;
         transition:0.5s 0.1s;
       }
@@ -369,7 +382,22 @@
         font-size:30px;
       }
       h3{
-        font-size:60px;
+        font-size:55px;
+      }
+      .banner-design .swiper-slide .img-box{
+        display:none;
+      }
+      .banner-design .swiper-slide{
+        height:150px;
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:auto 100%;
+      }
+      .banner-design .swiper-slide:nth-child(1){
+        background-image:url('./images/m-banner-design01-lime.png');
+      }
+      .banner-design .swiper-slide:nth-child(2){
+        background-image:url('./images/m-banner-design02-glow.png');
       }
     }
 
@@ -391,7 +419,7 @@
         <button class="btn-page02 btn-page" type="button"><a href="#about-me"><span>지원자정보 바로보기</span></a></button>
       </div>
       <nav>
-        <ul>
+        <ul class="nav-text">
           <li><a href="#home">home</a></li>
           <li><a href="#work">work</a></li>
           <li><a href="#about-me">about-me</a></li>
@@ -416,7 +444,7 @@
               <h5>포인트</h5>
               <p>#반응형 #스크롤 이벤트 #자동 슬라이더</p>
               <button type="button">
-                <a href="https://github.com/juheee2/touslesjours">
+                <a href="https://github.com/juheee2/touslesjours" target="_blank">
                   사이트 바로가기
                 </a>
               </button>
@@ -435,7 +463,9 @@
               <h5>포인트</h5>  
               <p>#반응형 #아코디언 메뉴 #모달</p>
               <button type="button">
-                <a href="#">사이트 바로가기</a>
+                <a href="https://github.com/juheee2/" target="_blank">
+                  사이트 바로가기
+                </a>
               </button>
             </div>
           </article>
@@ -452,7 +482,9 @@
               <h5>포인트</h5>
               <p>#반응형 #animation #hover</p>
               <button type="button">
-                <a href="https://github.com/juheee2/juheee2.github.io">사이트 바로가기</a>
+                <a href="https://github.com/juheee2/juheee2.github.io" target="_blank">
+                  사이트 바로가기
+                </a>
               </button>
             </div>
           </article>
@@ -469,7 +501,9 @@
               <h5>포인트</h5>
               <p>#</p>
               <button type="button">
-                <a href="#">사이트 바로가기</a>
+                <a href="https://github.com/juheee2/" target="_blank">
+                  사이트 바로가기
+                </a>
               </button>
             </div>
           </article>
@@ -542,46 +576,71 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     const bannerDesignSwiper = new Swiper(".banner-design-swiper", {
-      direction: "vertical",
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
       },
       autoplay:{
         delay:1600,
       }
     });
 
+
+
     AOS.init();
 
-    let oldScrTop = 0;
+    
+    
+
+    // nav 반응형 현재 스크롤 위치
+    let nowTop = 0;
+
+    // 전체 스크롤 이벤트
     $(window).scroll(function () {          
-      // 어사이드 이벤트
+      // aside-up 이벤트
       let targetY = $('.work .art02').offset().top;
       let targetHeight = $('.work .art02').height();
       let scrTop = $(window).scrollTop();
       let winHeight = $(window).height();
       let showPont = targetY - winHeight + targetHeight;
       asideEvent(scrTop,showPont);
+    
+      
+      // nav 반응형
+        if(scrTop == 0){
+          console.log('최상단');
+          $('nav').removeClass();
+        }else if(scrTop > nowTop){
+          console.log('다운');
+          $('nav').removeClass('up');
+          $('nav').addClass('down');
+        }else{
+          console.log('업');
+          $('nav').addClass('up');
+          $('nav').removeClass('down');
+        }
+        nowTop = scrTop;
+      });
+    
 
-      // 네비 반응형
-      if(0 == scrTop){
-        console.log('최상단');
-      }else if(scrTop > oldScrTop){
-        console.log('다운');
-      }else if(scrTop < oldScrTop){
-        console.log('업');
-      }
-      oldScrTop = scrTop;
 
-    });
 
+
+    // 사이즈 조절했을때 aside-up 호출
     $(window).resize(function () {
      asideEvent();
     });
+
     asideEvent();
 
-    
+    // aside-up 나오고 안나오고 이벤트
     function asideEvent(val01,val02){      
       if (val01>=val02) {
         $('.aside-up').fadeIn(500);
@@ -590,11 +649,17 @@
       }      
     }
 
+    // aside-up 클릭 이벤트
     $('.aside-up .btn-up').click(function (event) {
       event.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, 200);
     });
 
+
+
+
+
+    // 클립보드
     $(function(){
       var clipboard = new ClipboardJS('#copy');
         clipboard.on('success', function(e) {alert("클립보드에 복사되었습니다:) 연락주세요!");}); 
