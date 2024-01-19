@@ -479,7 +479,7 @@
           </article>
           <article class="art art02">
             <div class="img-box" data-aos="flip-left">
-              <img src="./images/ex-mockup.png" alt="우리은행 리뉴얼">
+              <img src="./images/wooribank-mockup.png" alt="우리은행 리뉴얼">
             </div>
             <div class="art-txt">
               <h4>우리은행 리뉴얼</h4>
@@ -490,7 +490,7 @@
               <h5>포인트</h5>  
               <p>#반응형 #아코디언 메뉴 #모달</p>
               <button type="button">
-                <a href="https://github.com/juheee2/" target="_blank">
+                <a href="https://github.com/juheee2/wooribank" target="_blank">
                   사이트 바로가기
                 </a>
               </button>
@@ -527,7 +527,7 @@
               <p>메인 페이지(데스크탑/테블릿/모바일)</p>
               <h5>포인트</h5>
               <p>#</p>
-              <button type="button">
+              <button class="sorry-confirm" type="button">
                 <a href="https://github.com/juheee2/" target="_blank">
                   사이트 바로가기
                 </a>
@@ -602,6 +602,15 @@
   <script src="./js/clipboard.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    let sorryConfirm = document.querySelectorAll('.sorry-confirm'); 
+
+    sorryConfirm.onclick = function(){
+      fnLoginOpen();
+    }
+    function fnLoginOpen(){
+      let scfValue = confirm('현재 페이지는 준비중입니다.\n이용에 불편을 드려 죄송합니다.');
+    }
+
     const bannerDesignSwiper = new Swiper(".banner-design-swiper", {
       grabCursor: true,
       effect: "creative",
